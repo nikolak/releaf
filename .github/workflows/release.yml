@@ -1,0 +1,79 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Read release notes
+        shell: bash
+        run: |
+          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo 'Release tags must use vMAJOR.MINOR.PATCH, for example v1.0.0.' >&2
+            exit 1
+          fi
+          mkdir -p firmware/build
+          awk -v heading="## ${GITHUB_REF_NAME#v}" '
+            $0 == heading { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md > firmware/build/release-notes.md
+          if ! grep -q '[^[:space:]]' firmware/build/release-notes.md; then
+            echo "Add release notes under ## ${GITHUB_REF_NAME#v} in CHANGELOG.md first." >&2
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+
+      - name: Install build tools
+        run: python -m pip install platformio==6.1.18 esptool==5.2.0
+
+      - name: Build firmware
+        run: bash firmware/build.sh
+
+      - name: Package firmware
+        shell: bash
+        run: |
+          firmware_dir=firmware/build/WLED/.pio/build/esp32c3_releaf
+          python -m esptool --chip esp32c3 merge-bin \
+            --output firmware/build/releaf-esp32c3-factory.bin \
+            --flash-mode dio --flash-size 4MB \
+            0x0 "$firmware_dir/bootloader.bin" \
+            0x8000 "$firmware_dir/partitions.bin" \
+            0xe000 firmware/build/platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin \
+            0x10000 "$firmware_dir/firmware.bin"
+          cp firmware/build/firmware.bin firmware/build/releaf-esp32c3.bin
+          unzip -t hardware/releaf-gerbers.zip
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "Releaf $GITHUB_REF_NAME" \
+            --notes-file firmware/build/release-notes.md \
+            firmware/build/releaf-esp32c3-factory.bin \
+            firmware/build/releaf-esp32c3.bin \
+            hardware/releaf-gerbers.zip \
+            hardware/shell/releaf-shell.3mf

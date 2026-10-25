@@ -1,0 +1,520 @@
+(kicad_sch (version 20250114) (generator "eeschema") (uuid "bec33e21-1c03-5b94-af13-26ac8302c520") (paper "A4") (title_block (title "Releaf - controller board") (date "2026-10-14") (rev "v1.0") (comment 1 "80 x 20 mm; components front, contacts back; switch OFF for USB")) (lib_symbols (symbol "Nanoleaf:Panel_Contacts" (pin_names (offset 0.508)) (in_bom yes) (on_board yes)
+ (property "Reference" "J" (at 0 12.700000000000001 0) (effects (font (size 1.27 1.27))))
+ (property "Value" "Panel_Contacts" (at 0 10.16 0) (effects (font (size 1.27 1.27))))
+ (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+ (symbol "Panel_Contacts_0_1" (rectangle (start -5.08 8.89) (end 5.08 -8.89) (stroke (width 0.254) (type default)) (fill (type background))))
+ (symbol "Panel_Contacts_1_1" (pin passive line (at 10.16 5.08 180) (length 5.08) (name "DATA" (effects (font (size 1.016 1.016)))) (number "1" (effects (font (size 1.016 1.016)))))(pin passive line (at 10.16 0.0 180) (length 5.08) (name "GND" (effects (font (size 1.016 1.016)))) (number "2" (effects (font (size 1.016 1.016)))))(pin passive line (at 10.16 -5.08 180) (length 5.08) (name "41V" (effects (font (size 1.016 1.016)))) (number "3" (effects (font (size 1.016 1.016)))))))(symbol "Nanoleaf:D45V5F5" (pin_names (offset 0.508)) (in_bom yes) (on_board yes)
+ (property "Reference" "U" (at 0 13.97 0) (effects (font (size 1.27 1.27))))
+ (property "Value" "D45V5F5" (at 0 11.43 0) (effects (font (size 1.27 1.27))))
+ (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+ (symbol "D45V5F5_0_1" (rectangle (start -10.16 10.16) (end 10.16 -10.16) (stroke (width 0.254) (type default)) (fill (type background))))
+ (symbol "D45V5F5_1_1" (pin power_in line (at -15.24 5.08 0) (length 5.08) (name "VIN" (effects (font (size 1.016 1.016)))) (number "VIN" (effects (font (size 1.016 1.016)))))(pin power_out line (at 15.24 5.08 180) (length 5.08) (name "5V OUT" (effects (font (size 1.016 1.016)))) (number "VOUT" (effects (font (size 1.016 1.016)))))(pin power_in line (at 0 -15.24 90) (length 5.08) (name "GND" (effects (font (size 1.016 1.016)))) (number "GND" (effects (font (size 1.016 1.016)))))))(symbol "Device:C_Polarized"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "C"
+			(at 0.635 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C_Polarized"
+			(at 0.635 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0.9652 -3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Polarized capacitor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "cap capacitor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "CP_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "C_Polarized_0_1"
+			(rectangle
+				(start -2.286 0.508)
+				(end 2.286 1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.778 2.286) (xy -0.762 2.286)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.27 2.794) (xy -1.27 1.778)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 2.286 -0.508)
+				(end -2.286 -1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+		)
+		(symbol "C_Polarized_1_1"
+			(pin passive line
+				(at 0 3.81 270)
+				(length 2.794)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -3.81 90)
+				(length 2.794)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)(symbol "Nanoleaf:ESP1010" (pin_names (offset 0.508)) (in_bom yes) (on_board yes)
+ (property "Reference" "SW" (at 0 7.62 0) (effects (font (size 1.27 1.27))))
+ (property "Value" "ESP1010" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
+ (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+ (symbol "ESP1010_0_1"
+  (polyline (pts (xy 2.54 0) (xy -2.54 3.3)) (stroke (width 0.254) (type default)) (fill (type none)))
+  (circle (center -2.54 0) (radius 0.508) (stroke (width 0.254) (type default)) (fill (type none)))
+  (circle (center -2.54 -5.08) (radius 0.508) (stroke (width 0.254) (type default)) (fill (type none))))
+ (symbol "ESP1010_1_1" (pin passive line (at -7.62 0 0) (length 5.08) (name "ON" (effects (font (size 1.016 1.016)))) (number "1" (effects (font (size 1.016 1.016)))))(pin passive line (at -7.62 -5.08 0) (length 5.08) (name "OFF" (effects (font (size 1.016 1.016)))) (number "2" (effects (font (size 1.016 1.016)))))(pin passive line (at 7.62 0 180) (length 5.08) (name "C" (effects (font (size 1.016 1.016)))) (number "C" (effects (font (size 1.016 1.016)))))))(symbol "Nanoleaf:C3_SuperMini" (pin_names (offset 0.508)) (in_bom yes) (on_board yes)
+ (property "Reference" "U" (at 0 26.669999999999998 0) (effects (font (size 1.27 1.27))))
+ (property "Value" "C3_SuperMini" (at 0 24.13 0) (effects (font (size 1.27 1.27))))
+ (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+ (symbol "C3_SuperMini_0_1" (rectangle (start -15.24 22.86) (end 15.24 -20.32) (stroke (width 0.254) (type default)) (fill (type background))))
+ (symbol "C3_SuperMini_1_1" (pin power_in line (at -20.32 17.78 0) (length 5.08) (name "5V" (effects (font (size 1.016 1.016)))) (number "1" (effects (font (size 1.016 1.016)))))(pin power_in line (at -20.32 12.700000000000001 0) (length 5.08) (name "GND" (effects (font (size 1.016 1.016)))) (number "2" (effects (font (size 1.016 1.016)))))(pin power_out line (at -20.32 7.620000000000001 0) (length 5.08) (name "3V3" (effects (font (size 1.016 1.016)))) (number "3" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at -20.32 2.540000000000001 0) (length 5.08) (name "GPIO4 / TX" (effects (font (size 1.016 1.016)))) (number "4" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at -20.32 -2.539999999999999 0) (length 5.08) (name "GPIO3" (effects (font (size 1.016 1.016)))) (number "5" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at -20.32 -7.619999999999997 0) (length 5.08) (name "GPIO2" (effects (font (size 1.016 1.016)))) (number "6" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at -20.32 -12.7 0) (length 5.08) (name "GPIO1" (effects (font (size 1.016 1.016)))) (number "7" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at -20.32 -17.78 0) (length 5.08) (name "GPIO0" (effects (font (size 1.016 1.016)))) (number "8" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at 20.32 17.78 180) (length 5.08) (name "GPIO5 / RX" (effects (font (size 1.016 1.016)))) (number "9" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at 20.32 12.700000000000001 180) (length 5.08) (name "GPIO6" (effects (font (size 1.016 1.016)))) (number "10" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at 20.32 7.620000000000001 180) (length 5.08) (name "GPIO7" (effects (font (size 1.016 1.016)))) (number "11" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at 20.32 2.540000000000001 180) (length 5.08) (name "GPIO8" (effects (font (size 1.016 1.016)))) (number "12" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at 20.32 -2.539999999999999 180) (length 5.08) (name "GPIO9" (effects (font (size 1.016 1.016)))) (number "13" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at 20.32 -7.619999999999997 180) (length 5.08) (name "GPIO10" (effects (font (size 1.016 1.016)))) (number "14" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at 20.32 -12.7 180) (length 5.08) (name "GPIO20" (effects (font (size 1.016 1.016)))) (number "15" (effects (font (size 1.016 1.016)))))(pin bidirectional line (at 20.32 -17.78 180) (length 5.08) (name "GPIO21" (effects (font (size 1.016 1.016)))) (number "16" (effects (font (size 1.016 1.016)))))))(symbol "Device:R"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "R"
+			(at 2.032 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 0 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at -1.778 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "R res resistor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "R_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "R_0_1"
+			(rectangle
+				(start -1.016 -2.54)
+				(end 1.016 2.54)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "R_1_1"
+			(pin passive line
+				(at 0 3.81 270)
+				(length 1.27)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -3.81 90)
+				(length 1.27)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)(symbol "power:PWR_FLAG"
+		(power global)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "#FLG"
+			(at 0 1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 0 3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "flag power"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_0"
+			(pin power_out line
+				(at 0 0 90)
+				(length 0)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(embedded_fonts no)
+	))
+(symbol (lib_id "Nanoleaf:Panel_Contacts") (at 30.48 63.5 0) (unit 1) (in_bom no) (on_board yes) (dnp no) (uuid "75569ae9-178a-5385-9bdf-a173fd84df0c")(property "Reference" "J1" (at 30.48 48.26 0) (effects (font (size 1.016 1.016))))(property "Value" "PCB contacts" (at 30.48 50.8 0) (effects (font (size 1.016 1.016))))(property "Footprint" "Nanoleaf:Panel_Contacts" (at 30.48 63.5 0) (effects (font (size 1.016 1.016)) (hide yes)))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "J1") (unit 1)))))
+(symbol (lib_id "Nanoleaf:D45V5F5") (at 106.68 58.42 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "8f409de2-1e16-5d3c-a4cd-7207915f6a28")(property "Reference" "U1" (at 106.68 40.64 0) (effects (font (size 1.016 1.016))))(property "Value" "Pololu D45V5F5" (at 106.68 43.18 0) (effects (font (size 1.016 1.016))))(property "Footprint" "Nanoleaf:D45V5F5" (at 106.68 58.42 0) (effects (font (size 1.016 1.016)) (hide yes)))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "U1") (unit 1)))))
+(symbol (lib_id "Device:C_Polarized") (at 73.66 80.01 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "56cf7793-a278-5c15-af9e-62ef19ce0117")(property "Reference" "C1" (at 88.9 78.74 0) (effects (font (size 1.016 1.016))))(property "Value" "33uF / 100V" (at 88.9 81.28 0) (effects (font (size 1.016 1.016))))(property "Footprint" "Nanoleaf:CP_Radial_D8_L11.5_Horizontal" (at 73.66 80.01 0) (effects (font (size 1.016 1.016)) (hide yes)))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "C1") (unit 1)))))
+(symbol (lib_id "Nanoleaf:ESP1010") (at 165.1 53.34 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "9caf7fff-4e41-5388-97e4-7c6815e23b34")(property "Reference" "SW1" (at 165.1 40.64 0) (effects (font (size 1.016 1.016))))(property "Value" "ESP1010" (at 165.1 43.18 0) (effects (font (size 1.016 1.016))))(property "Footprint" "Nanoleaf:ESP1010" (at 165.1 53.34 0) (effects (font (size 1.016 1.016)) (hide yes)))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "SW1") (unit 1)))))
+(no_connect (at 157.48 58.42) (uuid "0901974d-e839-5ad1-9cbe-dfe3859338b4"))
+(symbol (lib_id "Nanoleaf:C3_SuperMini") (at 210.82 139.7 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "5dde794e-ddde-5198-844d-a7f4d6ef12fd")(property "Reference" "U2" (at 210.82 110.49 0) (effects (font (size 1.016 1.016))))(property "Value" "ESP32-C3 SuperMini" (at 210.82 113.03 0) (effects (font (size 1.016 1.016))))(property "Footprint" "Nanoleaf:ESP32_C3_SuperMini" (at 210.82 139.7 0) (effects (font (size 1.016 1.016)) (hide yes)))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "U2") (unit 1)))))
+(no_connect (at 190.5 142.24) (uuid "8da877d5-d134-5b89-b900-260b31136e10"))
+(no_connect (at 190.5 147.32) (uuid "ff6b3204-2eff-559d-a2af-31cde675f224"))
+(no_connect (at 190.5 152.4) (uuid "34316dc3-8632-5a61-af42-c9a83b4d4578"))
+(no_connect (at 190.5 157.48) (uuid "a96f919d-536d-5ee5-8eb2-d4f0639b534d"))
+(no_connect (at 231.14 127.0) (uuid "bdef9aab-609a-5097-bcfc-fc2347f79ffa"))
+(no_connect (at 231.14 132.08) (uuid "e6875c41-cf2a-5c8c-931d-1f5a3ad18fce"))
+(no_connect (at 231.14 137.16) (uuid "3b49b8af-c77e-5763-9584-996a6a243d2b"))
+(no_connect (at 231.14 142.24) (uuid "68b42268-e265-5b15-8580-a66d6c743a38"))
+(no_connect (at 231.14 147.32) (uuid "9ecca677-9702-5293-8bac-081059dbcc3f"))
+(no_connect (at 231.14 152.4) (uuid "0196d922-6bd4-556c-a1ca-2892b884da46"))
+(no_connect (at 231.14 157.48) (uuid "05cf316f-4f9f-500a-ac9b-3277b11c7198"))
+(symbol (lib_id "Device:R") (at 114.3 132.08 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "7c9aa90a-d5f1-5660-b70f-c93b8dc0c9c1")(property "Reference" "R1" (at 129.54 130.81 0) (effects (font (size 1.016 1.016))))(property "Value" "10k" (at 129.54 133.35 0) (effects (font (size 1.016 1.016))))(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" (at 114.3 132.08 0) (effects (font (size 1.016 1.016)) (hide yes)))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "R1") (unit 1)))))
+(wire (pts (xy 40.64 58.42) (xy 53.34 58.42)) (stroke (width 0) (type default)) (uuid "f52b04fe-9aef-595d-92a8-e640b07e5c14"))
+(label "DATA" (at 53.34 58.42 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "b024bef1-03c7-575f-a17d-e2e991793c5e"))
+(wire (pts (xy 40.64 63.5) (xy 53.34 63.5)) (stroke (width 0) (type default)) (uuid "3637caa3-35e6-5e5b-a630-5a518a580ba2"))
+(label "GND" (at 53.34 63.5 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "4f71e615-a16e-5e87-838b-78e21436dc7c"))
+(wire (pts (xy 40.64 68.58) (xy 53.34 68.58)) (stroke (width 0) (type default)) (uuid "48b37a5d-4546-50fe-9541-a9745dab18dd"))
+(label "PANEL_41V" (at 53.34 68.58 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "7f75c38b-201e-5a70-b1fa-c163000c8084"))
+(wire (pts (xy 91.44 53.34) (xy 78.74 53.34)) (stroke (width 0) (type default)) (uuid "8cd65a35-e5b2-54dd-aceb-ec1b10c98249"))
+(label "PANEL_41V" (at 78.74 53.34 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "5125b000-1094-5c91-8d55-d5cc29c83f81"))
+(wire (pts (xy 106.68 73.66) (xy 106.68 81.28)) (stroke (width 0) (type default)) (uuid "8aa801a9-da74-51b0-a082-089d093ba85d"))
+(label "GND" (at 106.68 81.28 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "f2e6710f-6005-50bd-a49c-7de480ee7fbb"))
+(wire (pts (xy 121.92 53.34) (xy 134.62 53.34)) (stroke (width 0) (type default)) (uuid "3883064c-6051-5dff-9e89-cd52ac1a9b92"))
+(label "BUCK_5V" (at 134.62 53.34 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "37f40626-33da-5ec5-8e4f-da06ac29c69c"))
+(wire (pts (xy 73.66 76.2) (xy 73.66 68.58)) (stroke (width 0) (type default)) (uuid "b208cd30-ce5d-5256-9045-926f3587a494"))
+(label "PANEL_41V" (at 73.66 68.58 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "b1571226-0ed0-5f08-98de-2968579fd616"))
+(wire (pts (xy 73.66 83.82) (xy 73.66 91.44)) (stroke (width 0) (type default)) (uuid "50106d36-757e-5689-b28a-7948388ecf9b"))
+(label "GND" (at 73.66 91.44 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "a0f431f8-ca0f-52b8-90a2-5a154d51640f"))
+(wire (pts (xy 157.48 53.34) (xy 144.78 53.34)) (stroke (width 0) (type default)) (uuid "ff0d978b-c2c2-5ea0-a8bb-51f3855e7b20"))
+(label "BUCK_5V" (at 144.78 53.34 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "a5c45f73-65b0-5048-9ee4-b77096067b86"))
+(wire (pts (xy 172.72 53.34) (xy 185.42 53.34)) (stroke (width 0) (type default)) (uuid "6c324e6e-51e4-5384-80a7-44e01bf973e9"))
+(label "C3_5V" (at 185.42 53.34 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "a514a513-cdb0-5a4e-a6ad-bc919b82f8a1"))
+(wire (pts (xy 190.5 121.92) (xy 177.8 121.92)) (stroke (width 0) (type default)) (uuid "6a51cec7-8d05-565a-adfe-ffd0039d2d35"))
+(label "C3_5V" (at 177.8 121.92 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "2db459f8-d6a4-5347-a48f-642b86ac45a0"))
+(wire (pts (xy 190.5 127) (xy 177.8 127)) (stroke (width 0) (type default)) (uuid "a2c2ae42-de56-5d05-827d-dd175fb352bc"))
+(label "GND" (at 177.8 127 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "1aae7606-78bd-5fee-b6c2-027bd67da9cc"))
+(wire (pts (xy 190.5 132.08) (xy 177.8 132.08)) (stroke (width 0) (type default)) (uuid "85cab1d5-5eac-50da-a6e5-d5eb9ac6a949"))
+(label "3V3" (at 177.8 132.08 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "cb349402-1d44-5b51-ae6f-dddccf7d1adf"))
+(wire (pts (xy 190.5 137.16) (xy 177.8 137.16)) (stroke (width 0) (type default)) (uuid "bd9a6ff8-0962-5798-8e69-28dc424caf6e"))
+(label "DATA" (at 177.8 137.16 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "c128ebe0-a890-50fb-94ee-89837b862b00"))
+(wire (pts (xy 231.14 121.92) (xy 243.84 121.92)) (stroke (width 0) (type default)) (uuid "8a6279b2-dd7b-5d26-8824-997c1ecf7ef3"))
+(label "DATA" (at 243.84 121.92 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "d574a713-95b5-56e8-89fb-391e3368c8f3"))
+(wire (pts (xy 114.3 128.27) (xy 114.3 120.65)) (stroke (width 0) (type default)) (uuid "03a49ac8-09d6-5258-b52f-a64438242ba9"))
+(label "3V3" (at 114.3 120.65 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "be6e324e-f129-5814-82ec-d248d11c670b"))
+(wire (pts (xy 114.3 135.89) (xy 114.3 143.51)) (stroke (width 0) (type default)) (uuid "70d83a7f-ae51-57e2-8102-d9f004540712"))
+(label "DATA" (at 114.3 143.51 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "14d9610b-4958-5f4d-9822-43983f013e11"))
+(text "Releaf - five hand-soldered parts" (at 17.78 17.78 0) (effects (font (size 2 2)) (justify left top)) (uuid "1582a43d-dc40-5909-bf4c-8c6e5e6c6b4f"))
+(text "v1.0 prototype | 80 x 20 x 1.6 mm | two layers | panel supply 41-42 V" (at 17.78 25.4 0) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "3612b2d5-186f-5684-a4a4-c8df900964c6"))
+(text "SW1 connects BUCK_5V to C3_5V in ON; OFF leaves C3_5V for USB.\nTurn OFF before plugging USB in. Unplug USB before switching ON.\nSW1 switches only 5 V; the converter input remains connected to the panel." (at 17.78 96.52 0) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "933705b8-b952-5ed1-a1fd-1d819958662b"))
+(text "DATA: GPIO4 TX + GPIO5 RX; use the existing open-drain firmware.\nR1 is the single 10k pull-up to 3V3. C1 positive lead goes to PANEL_41V.\nJ1 is integral exposed PCB copper, not an extra component." (at 17.78 154.94 0) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "7374a425-acf2-526b-ac57-0a89ba7f187b"))
+(text "FRONT: components; rear contacts appear left 41V, centre GND, right DATA.\nBACK / CONTACT VIEW: left DATA, centre GND, right 41V.\nThree 1.5 x 10 mm rear pads; two 3 x 9 mm latch openings; four edge U-notches." (at 17.78 170.18 0) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "263ddbfb-c79b-5255-859a-bbebd205bd85"))
+(symbol (lib_id "power:PWR_FLAG") (at 30.48 190.5 0) (unit 1) (in_bom no) (on_board yes) (uuid "175ac5e5-db12-54ba-8662-f0818fe193ec")(property "Reference" "#FLG01" (at 30.48 190.5 0) (effects (font (size 1.016 1.016)) (hide yes)))(property "Value" "PWR_FLAG" (at 30.48 185.42 0) (effects (font (size 1.016 1.016))))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "#FLG01") (unit 1)))))
+(wire (pts (xy 30.48 190.5) (xy 30.48 193.04)) (stroke (width 0) (type default)) (uuid "db4b918a-a64f-5a97-97a7-d05cc80192c6"))
+(label "PANEL_41V" (at 30.48 193.04 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "1f64c63c-e214-51e9-b9c6-5dc8d1e5b5f9"))
+(symbol (lib_id "power:PWR_FLAG") (at 60.96 190.5 0) (unit 1) (in_bom no) (on_board yes) (uuid "93cf1bc0-aeac-51eb-a6d1-1a3db1fb55db")(property "Reference" "#FLG02" (at 60.96 190.5 0) (effects (font (size 1.016 1.016)) (hide yes)))(property "Value" "PWR_FLAG" (at 60.96 185.42 0) (effects (font (size 1.016 1.016))))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "#FLG02") (unit 1)))))
+(wire (pts (xy 60.96 190.5) (xy 60.96 193.04)) (stroke (width 0) (type default)) (uuid "5fb6d3a7-54ec-5cbc-940e-dfb2c824feb5"))
+(label "GND" (at 60.96 193.04 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "8ce96041-613d-5582-b71e-22fda23648f2"))
+(symbol (lib_id "power:PWR_FLAG") (at 91.44 190.5 0) (unit 1) (in_bom no) (on_board yes) (uuid "ca2062be-a6a6-5bde-9ac2-259c9b6ea3df")(property "Reference" "#FLG03" (at 91.44 190.5 0) (effects (font (size 1.016 1.016)) (hide yes)))(property "Value" "PWR_FLAG" (at 91.44 185.42 0) (effects (font (size 1.016 1.016))))(instances (project "releaf" (path "/bec33e21-1c03-5b94-af13-26ac8302c520" (reference "#FLG03") (unit 1)))))
+(wire (pts (xy 91.44 190.5) (xy 91.44 193.04)) (stroke (width 0) (type default)) (uuid "49ec1b54-c68a-5f26-a8bc-a184457d5095"))
+(label "C3_5V" (at 91.44 193.04 0) (effects (font (size 1.016 1.016)) (justify left bottom)) (uuid "6f328659-dc9d-5ad4-8c25-6d836d06019f"))
+(embedded_fonts no))

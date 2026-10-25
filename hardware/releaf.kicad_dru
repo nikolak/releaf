@@ -1,0 +1,7 @@
+(version 1)
+(rule "41V clearance"
+ (condition "A.NetName == '/PANEL_41V'")
+ (constraint clearance (min 0.4mm)))
+(rule "DATA to 41V extra margin"
+ (condition "(A.NetName == '/DATA' && B.NetName == '/PANEL_41V') || (A.NetName == '/PANEL_41V' && B.NetName == '/DATA')")
+ (constraint clearance (min 1mm)))

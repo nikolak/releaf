@@ -1,0 +1,13 @@
+my_config.h
+*.bin
+*.elf
+.pio/
+build/
+build_output/
+node_modules/
+*.kicad_prl
+~*.lck
+*-backups/
+.history/
+__pycache__/
+.DS_Store

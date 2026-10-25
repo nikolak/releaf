@@ -1,0 +1,1 @@
+(fp_lib_table (version 7) (lib (name "Nanoleaf") (type "KiCad") (uri "${KIPRJMOD}/Nanoleaf.pretty") (options "") (descr "Project footprints"))(lib (name "Resistor_THT") (type "KiCad") (uri "${KICAD10_FOOTPRINT_DIR}/Resistor_THT.pretty") (options "") (descr "")))
