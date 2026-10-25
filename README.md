@@ -78,8 +78,6 @@ The PCB integrates the C3 and power management into one board. It draws power di
 
 The [Gerber files](hardware/releaf-gerbers.zip) are ready for production. The board is 80 × 20 mm, two layers, and 1.6 mm thick. If you want to change the design, open [releaf.kicad_pro](hardware/releaf.kicad_pro) in KiCad 10.
 
-The PCB hasn't been built yet, so it's still a prototype.
-
 When using the board, **switch it OFF before connecting USB, and unplug USB before switching it back ON.**
 
 ### Shell
