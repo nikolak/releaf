@@ -1,5 +1,7 @@
 # Changelog
 
+## Unreleased
+
 ## 1.0.0
 
 - WLED usermod and build configuration for controlling Nanoleaf Shapes with an ESP32-C3 SuperMini.

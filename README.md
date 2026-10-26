@@ -48,7 +48,7 @@ You can wire this directly, use a breadboard, or make the [controller board](#op
 1. Grab a release and follow the [firmware instructions](firmware/README.md#installing-a-release) to flash the C3. You can also [build from source](firmware/README.md#building-from-source).
 2. Swap the cables: disconnect the original Nanoleaf controller and connect the C3 using the [wiring below](#wiring). The panels still use their original power supply.
 3. Power on the C3 and connect to **WLED-AP** (password: `wled1234`). Open [4.3.2.1](http://4.3.2.1) and enter your Wi-Fi details.
-4. Open WLED at its network address, set the LED count to the number of panels, and restart the C3 so it can discover the layout. From there, you can use WLED's effects and presets as usual.
+4. Open WLED at its network address. Releaf finds the panels and their layout on its own, so you can use WLED's effects and presets as usual.
 
 ## Wiring
 

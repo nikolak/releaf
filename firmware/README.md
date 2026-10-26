@@ -10,7 +10,7 @@ The firmware is WLED with a usermod that handles communication with the Shapes p
 2. If you're using the optional PCB, **switch it OFF before connecting USB**. Connect the C3 to your computer with a USB data cable.
 3. Open [Espressif's browser flasher](https://espressif.github.io/esptool-js/) in Chrome or Edge, click **Connect**, and select the C3's serial port.
 4. Select the downloaded file and set its flash address to **`0x0`**. Erase the flash, then program the file. Erasing removes any existing firmware and settings on the C3.
-5. Reset the C3 and continue with [Getting started](../README.md#getting-started) to set up Wi-Fi and the panel count. If you're using the PCB, unplug USB before switching it back ON.
+5. Reset the C3 and continue with [Getting started](../README.md#getting-started) to set up Wi-Fi. If you're using the PCB, unplug USB before switching it back ON.
 
 If the flasher can't connect, hold BOOT, press and release RESET, then release BOOT and try again.
 
@@ -54,7 +54,7 @@ bash firmware/build.sh -t upload
 
 PlatformIO should find the USB port automatically. If it doesn't, add `--upload-port PORT` to the command, using your C3's serial port in place of `PORT`.
 
-Once it's flashed, follow [Getting started](../README.md#getting-started) to set up Wi-Fi and the panel count. TX is GPIO4 and RX is GPIO5; leave those as they are.
+Once it's flashed, follow [Getting started](../README.md#getting-started) to set up Wi-Fi. TX is GPIO4 and RX is GPIO5; leave those as they are.
 
 If you use a private `my_config.h`, put it in `firmware/build/WLED/wled00/`. That keeps it out of git along with the build files.
 
@@ -71,4 +71,4 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
-The [release workflow](../.github/workflows/release.yml) builds the firmware, packages the USB installation image, and creates a GitHub release with both firmware files and the Gerber ZIP from that tag. The matching changelog entry becomes the release notes. If the notes are missing or the build fails, it won't publish a release.
+The [release workflow](../.github/workflows/release.yml) builds the firmware, packages the USB installation image, and creates a GitHub release with both firmware files, the Gerber ZIP and the shell 3MF from that tag. The matching changelog entry becomes the release notes. If the notes are missing or the build fails, it won't publish a release.
