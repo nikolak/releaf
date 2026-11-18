@@ -1,0 +1,13 @@
+diff --git a/wled00/wled_metadata.cpp b/wled00/wled_metadata.cpp
+index e9b114a..608169e 100644
+--- a/wled00/wled_metadata.cpp
++++ b/wled00/wled_metadata.cpp
+@@ -137,7 +137,7 @@ static inline String bufToString(const char (&buf)[len]) {
+   char sbuf[len+1];
+   size_t real_len = strnlen(buf, len);
+   memcpy(sbuf, buf, real_len);
+-  sbuf[len] = '\0';
++  sbuf[real_len] = '\0';
+   return sbuf;
+ }
+ 

@@ -6,7 +6,7 @@ Two printed parts:
   back  - the half against the wall. Carries the linker latch and holds the
           PCB. Its back face sits flush with the panel's back.
   front - the cover you see. Presses the PCB onto the latch and covers
-          everything above the panel's front face.
+          everything above the back.
 Held together without screws by two large latches, one on each 60 degree
 end wall. Each is a tall plate hanging from the front with a hook near its
 tip; the hook catches the top edge of an opening in the back that runs through
@@ -62,6 +62,15 @@ CLEAR = 0.3                       # PCB to shell, each side
 CLEAR_JOINT = 0.1                 # ...except on the panel side, where the wall is thin
 CLAMP = 0.05                      # front ribs press this far into the PCB
 
+# Lip along the top of the back's outer wall, over the whole length of the PCB.
+# The PCB's outer edge goes under it at an angle, then the panel side leans down
+# onto the pins. Lying flat, the PCB can't lift straight out. The underside is
+# 45 degrees, so it prints without support, and it ends on the PCB's front
+# corner. Its top is the seam.
+LIP_REACH = 0.8                   # how far it reaches over the PCB
+LIP_TIP_T = 0.5                   # thickness of its tip, up to the seam
+LIP_PIN_HALF = 1.1                # half width across the flats of the pin next to the lip
+
 # Component heights above the PCB front. The SuperMini and the regulator
 # are assumed to sit on standard 2.54 mm headers (2.5 mm plastic spacer).
 MINI_STANDOFF = 2.5
@@ -80,7 +89,9 @@ WALL = 1.6
 TOP_CLEAR = 0.5           # tallest part (C1) to the inside of the top
 R_ACUTE = 1.0             # plan corner radii
 R_OBTUSE = 2.5
-SEAM = -0.5               # front/back split = the panel's front face (6 mm panel)
+SEAM = PCB_FRONT - LIP_REACH - LIP_TIP_T   # front/back split = the top of the PCB lip
+PANEL_SEAM = -0.5         # ...except along the PCB on the panel side, where the back's wall stops here,
+                          # so the PCB's panel side can lean down past it
 REVEAL = 0.4              # chamfer on each side of the seam
 BACK_CHAMFER = 0.6
 
@@ -159,6 +170,7 @@ POCKET_Y = (PCB_Y[0] - CLEAR, PCB_Y[1] + CLEAR)
 
 TALLEST = CAP_LIFT + CAP_D
 TOP = PCB_FRONT - TALLEST - TOP_CLEAR - WALL      # outer front face
+LIP_TIP = PCB_X[1] - LIP_REACH
 
 
 
@@ -284,6 +296,14 @@ def latch_seat_local():
 
 
 # --- back ---------------------------------------------------------------------
+def board_lip():
+    """The lip, on the inside of the back's outer wall, over the whole PCB pocket."""
+    wall = POCKET_X[1]
+    corner_z = PCB_FRONT + (wall - PCB_X[1])          # the 45 degree underside reaches the wall here
+    pts = [(wall + 0.01, corner_z), (LIP_TIP, PCB_FRONT - LIP_REACH), (LIP_TIP, SEAM), (wall + 0.01, SEAM)]
+    return xz_prism(pts, (POCKET_Y[0] + POCKET_Y[1]) / 2, POCKET_Y[1] - POCKET_Y[0])
+
+
 def make_back():
     outer = (prism(OUTLINE, SEAM, BACK, R_ACUTE, R_OBTUSE)
              .faces(">Z").edges().chamfer(BACK_CHAMFER)
@@ -308,10 +328,17 @@ def make_back():
     for nx, ny in NOTCHES:
         x, y, _ = board_xyz(nx, ny)
         pin = cyl_z(x, y, PCB_FRONT + 0.3, PLATE_FRONT, 1.3)
-        # above the seam, keep it inside the PCB pocket, clear of the front's walls
-        pin = pin.cut(box(-100, 100, -200, 200, SEAM - 2, SEAM)).union(
-            pin.intersect(box(*POCKET_X, *POCKET_Y, SEAM - 2, SEAM + 0.01)))
+        if x > LIP_TIP - 2:
+            # the pin next to the lip gets flats, so the notch's corners pass it on the way under the lip
+            pin = pin.intersect(box(x - 2, x + 2, y - LIP_PIN_HALF, y + LIP_PIN_HALF, SEAM - 2, BACK))
+        # above the panel-side seam, keep it inside the PCB pocket, clear of the front's wall
+        pin = pin.cut(box(-100, 100, -200, 200, SEAM - 2, PANEL_SEAM)).union(
+            pin.intersect(box(*POCKET_X, *POCKET_Y, SEAM - 2, PANEL_SEAM + 0.01)))
         back = back.union(pin)
+
+    back = back.union(board_lip())
+    # the panel-side wall stays low along the PCB; the front's wall comes down to it
+    back = back.cut(box(FACE - 1, POCKET_X[0], *POCKET_Y, SEAM - 1, PANEL_SEAM))
 
     # seats for the front's latches
     for x, y, angle in latches():
@@ -370,19 +397,20 @@ def make_front():
     for c in bevel_cutters(WALLS):
         cavity = cavity.cut(c)
 
-    front = outer.cut(cavity).cut(box(*POCKET_X, *POCKET_Y, PCB_FRONT, SEAM + 1))
+    # the panel-side wall reaches down to the back's low wall along the PCB
+    panel_wall = box(FACE, FACE + WALLS[3], POCKET_Y[0] + 0.1, POCKET_Y[1] - 0.1, SEAM - REVEAL - 0.01, PANEL_SEAM)   # starts above the seam chamfer
+    front = outer.cut(cavity).union(panel_wall).cut(box(*POCKET_X, *POCKET_Y, PCB_FRONT, PANEL_SEAM + 1))
     inner_top = TOP + WALL
     clamp_z = PCB_FRONT + CLAMP
 
-    # rib along the PCB's panel-side edge, pressing it onto the latch bridge
+    # rib along the PCB's panel-side edge, pressing it onto the latch bridge: it
+    # reaches down past the seam on the panel-side wall
     # (with a 45 degree underside back to the wall, since the front prints front-down)
     x_wall, x_tip = FACE + WALLS[3], PCB_X[0] + 0.7
     reach = x_tip - x_wall
-    pts = [(x_wall - 0.2, clamp_z), (x_tip, clamp_z), (x_tip, clamp_z - 0.5),
-           (x_wall, clamp_z - 0.5 - reach), (x_wall - 0.2, clamp_z - 0.5 - reach)]
+    pts = [(x_wall - 0.2, clamp_z), (x_tip, clamp_z), (x_tip, SEAM - 0.5),
+           (x_wall, SEAM - 0.5 - reach), (x_wall - 0.2, SEAM - 0.5 - reach)]
     front = front.union(xz_prism(pts, (PCB_Y[0] + PCB_Y[1]) / 2, PCB_Y[1] - PCB_Y[0]))
-    # ...and a fin down from the top along the outer edge
-    front = front.union(box(PCB_X[1] - 0.7, PCB_X[1] + 0.1, *PCB_Y, inner_top - 0.1, clamp_z))
 
     # press frame over the pads, against the panel's spring contacts
     px0, py0, _ = board_xyz(37.0, 5.4)
@@ -391,7 +419,8 @@ def make_front():
     frame = frame.cut(box(px0 + 1.2, px1 - 1.2, py0 - 1.2, py1 + 1.2, inner_top - 1, clamp_z + 1))
     front = front.union(frame)
 
-    keep = outer
+    # the rib and the press frame reach below the seam, inside the PCB pocket
+    keep = outer.union(box(*POCKET_X, *POCKET_Y, SEAM - 1, clamp_z)).union(panel_wall)
     for x, y, angle in latches():
         front = front.union(place(latch_local(), x, y, angle))
         keep = keep.union(place(box(-LATCH_T, HOOK, -LATCH_W / 2, LATCH_W / 2, SEAM - 1, LATCH_TIP),

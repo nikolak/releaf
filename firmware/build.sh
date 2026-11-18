@@ -26,6 +26,10 @@ if [[ "$(git -C "$WLED_DIR" rev-parse HEAD)" != "$WLED_REVISION" ]]; then
   printf 'Save any private my_config.h, remove firmware/build/WLED, and rerun.\n' >&2
   exit 1
 fi
+# WLED's update check compares the release name plus leftover memory and rejects matching firmware.
+if ! git -C "$WLED_DIR" apply --reverse --check "$FIRMWARE_DIR/wled-ota-check.patch" 2>/dev/null; then
+  git -C "$WLED_DIR" apply "$FIRMWARE_DIR/wled-ota-check.patch"
+fi
 
 cp -R "$FIRMWARE_DIR/usermods/nanoleaf_shapes" "$WLED_DIR/usermods/"
 cp "$FIRMWARE_DIR/platformio_override.ini" "$WLED_DIR/platformio_override.ini"

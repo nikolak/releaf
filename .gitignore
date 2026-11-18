@@ -11,3 +11,4 @@ node_modules/
 .history/
 __pycache__/
 .DS_Store
+.venv/

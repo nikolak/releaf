@@ -35,6 +35,7 @@ static constexpr uint8_t  LB_BULK_PULL      = 0xC0;   // reply: 2 status bytes p
 static constexpr uint8_t  LB_BULK_PUSH      = 0xE0;   // colour for every panel, no reply
 static constexpr uint8_t  LB_GLOBAL_CMD     = 0xFC;
 static constexpr uint8_t  LB_CMD_BRIGHTNESS = 0x04;
+static constexpr uint8_t  LB_CMD_TOUCH_RESPONSE = 0x07; // panel-local reaction to touch
 static constexpr uint8_t  LB_TERMINATOR     = 0x40;
 static constexpr uint8_t  LB_HOTPLUG        = 0xCC;   // trailing byte of a pull reply after a change
 static constexpr uint8_t  LB_PSU_CODE       = 1;      // connector-count code of the power supply node
@@ -145,6 +146,7 @@ class UsermodNanoleafShapes : public Usermod {
       top[F("rxPin")]    = rxPin;
       top[F("autoMap")]  = autoMap;      // maintain /ledmap.json from the panel layout
       top[F("rotation")] = rotation;     // degrees, rotates that map
+      top[F("disableTouch")] = disableTouch; // turn off the panels' own reaction to touch
     }
 
     bool readFromConfig(JsonObject &root) override {
@@ -153,15 +155,18 @@ class UsermodNanoleafShapes : public Usermod {
       const bool    wasEnabled = enabled, oldAutoMap = autoMap;
       const int8_t  oldTx = txPin, oldRx = rxPin;
       const int16_t oldRotation = rotation;
+      const bool    oldDisableTouch = disableTouch;
       getJsonValue(top[F("enabled")],  enabled);
       getJsonValue(top[F("txPin")],    txPin);
       getJsonValue(top[F("rxPin")],    rxPin);
       getJsonValue(top[F("autoMap")],  autoMap);
       getJsonValue(top[F("rotation")], rotation);
+      getJsonValue(top[F("disableTouch")], disableTouch);
       rotation = ((rotation % 360) + 360) % 360;
       // Called from the web server task: hand the restart to loop()
       if (initDone && (enabled != wasEnabled || txPin != oldTx || rxPin != oldRx)) _restart = true;
       if (autoMap != oldAutoMap || rotation != oldRotation) _mapDone = false; // the bus task rebuilds the map
+      if (disableTouch != oldDisableTouch) _touchDirty = true;                // the bus task sends the new state
       return true;
     }
 
@@ -174,6 +179,7 @@ class UsermodNanoleafShapes : public Usermod {
     int8_t  rxPin    = LEAFBUS_RX_PIN;
     bool    autoMap  = true;
     int16_t rotation = 0;
+    bool    disableTouch = false;
 
     bool initDone = false;
     bool running  = false;
@@ -196,6 +202,7 @@ class UsermodNanoleafShapes : public Usermod {
     uint8_t  _layout[LB_MAX_LAYOUT];
     size_t   _layoutLen = 0;
     volatile bool _mapDone = false;       // cleared by readFromConfig() when the map settings change
+    volatile bool _touchDirty = false;    // set by readFromConfig() when disableTouch changes
     std::atomic<uint32_t> _txFrames{0}, _echoErrors{0}, _layoutRequests{0}, _layoutReplies{0};
     std::atomic<uint32_t> _polls{0}, _pollReplies{0}, _colourFrames{0};
 
@@ -304,6 +311,7 @@ class UsermodNanoleafShapes : public Usermod {
           continue;
         }
         if (!_mapDone && _layoutLen) updateLedmap();
+        if (_touchDirty) sendTouchResponse();
         if (_dirty && now - _lastPush >= LB_MIN_FRAME_MS) push();
         if (now - _lastPoll >= LB_POLL_MS) poll();
       }
@@ -336,6 +344,14 @@ class UsermodNanoleafShapes : public Usermod {
       }
       if (!ok || got != len) { _echoErrors++; return false; }
       return true;
+    }
+
+    // Stock controller firmware 12.3.2 (enablePanelIsolatedTouchResponse) inverts the flag: 1 = off.
+    // LeafBus documents the opposite polarity; not confirmed on hardware.
+    void sendTouchResponse() {
+      const uint8_t frame[] = {LB_GLOBAL_CMD, LB_CMD_TOUCH_RESPONSE, (uint8_t)(disableTouch ? 0x01 : 0x00)};
+      _touchDirty = false;
+      send(frame, sizeof(frame));
     }
 
     // Read a reply until `expect` bytes, the layout terminator or the deadline.
@@ -403,6 +419,7 @@ class UsermodNanoleafShapes : public Usermod {
       if (!_panels) return;
 
       send(fullBright, sizeof(fullBright)); // WLED scales brightness itself; undo any dimming left by the stock controller
+      if (disableTouch || _touchDirty) sendTouchResponse(); // reapplied after every enumeration
       if (xSemaphoreTake(_lock, pdMS_TO_TICKS(20)) == pdTRUE) {
         _dirty = true; // show the current frame on the (re)found panels
         xSemaphoreGive(_lock);

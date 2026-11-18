@@ -25,7 +25,7 @@ Both STEP files are already oriented for printing. Import each one as a single o
 
 ## Assembly
 
-1. Drop the board into the back half, pads first. The four pins locate it by its edge notches.
+1. Put the board into the back half, pads first, at an angle: tuck its outer long edge under the lip on the outer wall, then lean the panel side down. The four pins locate it by its edge notches. To take it out, lean it back up the same way.
 2. Press the front half on until both latches click, one at each angled end. There are no screws.
 
 To open it, pull the halves apart firmly; the 45° catches let go. For a gentler release, press each hook toward the middle of the shell through the opening at each angled end of the back face. If a hook ever breaks off, it falls out through that opening. The switch and USB-C port are inside, so open the shell to reach them.
